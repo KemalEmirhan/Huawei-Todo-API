@@ -32,8 +32,8 @@ public class ItemController {
     /**
      * It does create a new item and save it into Item Collection
      *
-     * @param Todo id
-     * @param Item itemRequest
+     * @param id
+     * @param itemRequest
      * @return Item Object
      */
     @RequestMapping(value = "/{todoId}/items", method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class ItemController {
     /**
      * It does collect all items from its todo list
      *
-     * @param Todo id
+     * @param id
      * @return List of items
      */
     @RequestMapping(value = "/{todoId}/items", method = RequestMethod.GET)
@@ -117,17 +117,21 @@ public class ItemController {
                                            @Valid @RequestBody Item itemRequest) {
 
         Todo todo = todoRepository.findBy_id(todoId);
-        Item item = new Item();
+        Item item = itemRepository.findBy_id(itemId);
 
         if (todo != null) {
-            item.setUpdatedAt(date);
             item.setName(itemRequest.getName());
             item.setDescription(itemRequest.getDescription());
             item.setDeadline(date);
+            item.setUpdatedAt(date);
 
             if (item.getSubItems() == null) {
                 item.setCompleted(itemRequest.isCompleted());
             }
+
+            todo.setItems(Arrays.asList(item));
+
+            todoRepository.save(todo);
 
             return new ResponseEntity<Item>(itemRepository.save(item), HttpStatus.OK);
 

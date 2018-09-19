@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +23,6 @@ public class TodoController {
     /**
      * It does create a new record and save it into Todos collection
      *
-     * @param todo object
      * @return saved data
      */
 
@@ -44,18 +41,19 @@ public class TodoController {
     /**
      * It does list all objects from Todos collection
      *
-     * @return all todos
+     * @return list of todos
      */
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public List<Todo> getAllTodos() {
         return repository.findAll();
     }
 
+
     /**
      * It does find one object with given id
      *
      * @param id
-     * @return todo object
+     * @return single object
      */
     @RequestMapping(value = "/todos/{id}", method = RequestMethod.GET)
     public Todo getTodoById(@Valid @PathVariable("id") ObjectId id) {
@@ -67,7 +65,6 @@ public class TodoController {
      * It does update object with given id from Todos collection
      *
      * @param id
-     * @param todo
      * @return updated object
      */
     @RequestMapping(value = "/todos/{id}", method = RequestMethod.PUT)

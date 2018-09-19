@@ -85,16 +85,18 @@ public class SubItemController {
         Todo todo = todoRepository.findBy_id(todoId);
         Item item = itemRepository.findBy_id(itemId);
 
-        SubItem subItem = new SubItem();
+        SubItem subItem = subItemRepository.findBy_id(subId);
 
         if (todo != null) {
-            subItem.setUpdatedAt(date);
             subItem.setName(subItemRequest.getName());
             subItem.setDescription(subItemRequest.getDescription());
             subItem.setDeadline(date);
+            subItem.setUpdatedAt(date);
 
-           if (subItem.isCompleted()) {
+           if (subItemRequest.isCompleted()) {
                item.setCompleted(true);
+               subItem.setCompleted(true);
+
                itemRepository.save(item);
            }
 
