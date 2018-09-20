@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(origins = "/**")
 @RequestMapping(value = "/api/todos")
 public class SubItemController {
 
