@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 @RestController
-@CrossOrigin(origins = "/**")
 @RequestMapping(value = "/api/todos")
 public class SubItemController {
 
@@ -40,6 +39,7 @@ public class SubItemController {
      * @param subItemRequest
      * @return Created SubItem Object
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{todoId}/items/{itemId}/subItems", method = RequestMethod.POST)
     public ResponseEntity<SubItem> createItem(@Valid @PathVariable("todoId") ObjectId todoId, @Valid @PathVariable("itemId") ObjectId itemId,
                                               @RequestBody SubItem subItemRequest) {
@@ -79,6 +79,7 @@ public class SubItemController {
      * @param subItemRequest
      * @return Updated SubItem Object
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{todoId}/items/{itemId}/subItems/{subId}", method = RequestMethod.PUT)
     public ResponseEntity<SubItem> updateItem(@Valid @PathVariable("todoId") ObjectId todoId, @Valid @PathVariable("itemId") ObjectId itemId,
                                               @Valid @PathVariable("subId") ObjectId subId,@Valid @RequestBody SubItem subItemRequest) {
@@ -114,6 +115,7 @@ public class SubItemController {
      * It does delete subItem with given id
      * @param id
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/subItems/{subId}", method = RequestMethod.DELETE)
     public void deleteSubItemById(@Valid @PathVariable("subId") ObjectId id) {
         subItemRepository.deleteById(id.toHexString());

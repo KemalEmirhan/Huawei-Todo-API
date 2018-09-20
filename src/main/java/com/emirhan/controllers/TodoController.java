@@ -26,7 +26,7 @@ public class TodoController {
      *
      * @return saved data
      */
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/todos", method = RequestMethod.POST)
     public Todo createTodo(@Valid @RequestBody Todo todo) {
 
@@ -44,6 +44,7 @@ public class TodoController {
      *
      * @return list of todos
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/todos", method = RequestMethod.GET)
     public List<Todo> getAllTodos() {
         return repository.findAll();
@@ -56,6 +57,7 @@ public class TodoController {
      * @param id
      * @return single object
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/todos/{id}", method = RequestMethod.GET)
     public Todo getTodoById(@Valid @PathVariable("id") ObjectId id) {
         return repository.findBy_id(id);
@@ -68,6 +70,7 @@ public class TodoController {
      * @param id
      * @return updated object
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/todos/{id}", method = RequestMethod.PUT)
     public Todo updateTodo(@Valid @PathVariable("id") ObjectId id, @Valid @RequestBody Todo todoRequest) {
 
@@ -84,6 +87,7 @@ public class TodoController {
      *
      * @param id
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/todos/{id}", method = RequestMethod.DELETE)
     public void deleteTodoById(@Valid @PathVariable ObjectId id) {
         repository.deleteById(id.toHexString());

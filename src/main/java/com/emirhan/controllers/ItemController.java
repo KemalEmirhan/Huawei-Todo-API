@@ -37,6 +37,7 @@ public class ItemController {
      * @param itemRequest
      * @return Item Object
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{todoId}/items", method = RequestMethod.POST)
     public ResponseEntity<Item> createItem(@Valid @PathVariable("todoId") ObjectId id, @RequestBody Item itemRequest) {
 
@@ -71,6 +72,7 @@ public class ItemController {
      * @param id
      * @return List of items
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{todoId}/items", method = RequestMethod.GET)
     public ResponseEntity<List<Item>> getAllItems(@Valid @PathVariable("todoId") ObjectId id) {
 
@@ -94,6 +96,7 @@ public class ItemController {
      * @param itemId
      * @return Item
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{todoId}/items/{itemId}", method = RequestMethod.GET)
     public ResponseEntity<Item> getItemById(@Valid @PathVariable("todoId") ObjectId todoId, @Valid @PathVariable("itemId") ObjectId itemId) {
         Item item = itemRepository.findBy_id(itemId);
@@ -113,6 +116,7 @@ public class ItemController {
      * @param itemRequest
      * @return Updated Item Object
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{todoId}/items/{itemId}", method = RequestMethod.PUT)
     public ResponseEntity<Item> updateItem(@Valid @PathVariable("todoId") ObjectId todoId, @Valid @PathVariable("itemId") ObjectId itemId,
                                            @Valid @RequestBody Item itemRequest) {
@@ -147,6 +151,7 @@ public class ItemController {
      * It does delete item with given id
      * @param itemId
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/items/{itemId}", method = RequestMethod.DELETE)
     public void deleteItemById(@Valid @PathVariable("itemId") ObjectId itemId) {
         itemRepository.deleteById(itemId.toHexString());
